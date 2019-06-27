@@ -13,14 +13,15 @@ public class ExceptionController {
 
     @Data
     @AllArgsConstructor
-    @Builder
     private class ExceptionDetails{
         String message;
     }
 
     @ExceptionHandler(value = NullPointerException.class)
     public ExceptionDetails exception(NullPointerException e){
-        ExceptionDetails es = null;
-        return es;
+        return new ExceptionDetails("Null pointer exception  "
+                + e.getStackTrace()[0].getFileName()
+                + "(" + e.getStackTrace()[0].getMethodName()
+                + ") at line: " + e.getStackTrace()[0].getLineNumber());
     }
 }
