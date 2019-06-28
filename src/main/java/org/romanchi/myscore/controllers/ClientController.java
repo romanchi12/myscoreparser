@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
+
 @RestController
 @RequestMapping(value = "/client")
 public class ClientController {
@@ -20,7 +22,7 @@ public class ClientController {
 
     @PostMapping(value = "/loadMoreMatches")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity loadMoreMatches(){
+    public ResponseEntity loadMoreMatches() throws ParseException {
         clientService.loadMoreMatches();
         return ResponseEntity.ok("OK");
     }

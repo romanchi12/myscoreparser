@@ -21,4 +21,8 @@ public class MatchService {
     public List<Match> findAll(PageRequest pageRequest){
         return matchRepository.findAll(pageRequest).getContent();
     }
+
+    public void save(Match match) {
+        matchRepository.save(match);
+    }
 }

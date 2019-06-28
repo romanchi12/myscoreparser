@@ -24,9 +24,9 @@ public class PlayerController {
         return playerService.findAll().stream().map(PlayerDTO::new).collect(Collectors.toList());
     }
     @GetMapping(value = "/{player_id}/matches")
-    public List<MatchDTO> allMatchesByPlayer(@PathVariable(name = "player_id") Integer playerId){
+    public List<MatchDTO> allMatchesByPlayer(@PathVariable(name = "player_id") String playerId){
         return playerService
-                .findById(playerId)
+                .findById(playerId).orElseThrow(NullPointerException::new)
                 .getMatches()
                 .stream()
                 .map(MatchDTO::new)

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerService {
@@ -20,7 +21,13 @@ public class PlayerService {
     public List<Player> findAll(){
         return playerRepository.findAll();
     }
-    public Player findById(Integer id){
-        return playerRepository.findById(id).orElseThrow(NullPointerException::new);
+
+    public Optional<Player> findById(String id){
+        return playerRepository.findById(id);
     }
+
+    public List<Player> saveAll(List<Player> players){
+        return playerRepository.saveAll(players);
+    }
+
 }

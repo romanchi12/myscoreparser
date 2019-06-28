@@ -18,7 +18,7 @@ import java.util.Set;
 @Builder
 public class Match {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name ="team1")
@@ -39,4 +39,14 @@ public class Match {
             inverseJoinColumns = @JoinColumn(name = "player_id"))
     @ElementCollection(targetClass=Player.class)
     private List<Player> players;
+
+    public MatchStatus getHomeTeamStatus(){
+        if(score1.equals(score2)){
+            return MatchStatus.DRAW;
+        }else if(score1 > score2){
+            return MatchStatus.WIN;
+        }else{
+            return MatchStatus.LOOSE;
+        }
+    }
 }

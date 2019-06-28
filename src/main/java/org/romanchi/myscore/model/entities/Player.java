@@ -16,9 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class Player {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @Column(name = "id")
+    private String id;
 
     @Column(name = "name")
     private String name;
@@ -26,6 +27,17 @@ public class Player {
     @Column(name = "birthdate")
     @Temporal(TemporalType.DATE)
     private Date birthday;
+
+    @Column(name = "wins")
+    private Integer wins;
+    @Column(name = "all_games")
+    private Integer allGames;
+    @Column(name = "draws")
+    private Integer draws;
+    @Column(name = "injury_amount")
+    private Integer injuryAmount;
+    @Column(name = "team_name")
+    private String teamName;
 
     @ManyToMany(mappedBy = "players")
     private List<Match> matches;
